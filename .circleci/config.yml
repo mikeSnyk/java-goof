@@ -6,6 +6,7 @@ jobs:
     docker:
       - image: 'cimg/node:lts'
     steps:
+      - run: install npm@5
       - checkout
       - run: npm ci
       - snyk/scan
