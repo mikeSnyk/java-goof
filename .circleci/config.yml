@@ -3,6 +3,15 @@ orbs:
   snyk: snyk/snyk@1.2.3
   node: circleci/node@5.0.2
 jobs:
+  test:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
+      - run: sudo npm install -g npm@latest
+      - run: npm run test
   build:
     docker:
       - image: 'cimg/node:lts'
