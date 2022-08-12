@@ -1,12 +1,21 @@
 version: '2.1'
 orbs:
-  snyk: snyk/snyk@x.y.z
+  snyk: snyk/snyk@1.2.3
 jobs:
   build:
     docker:
       - image: 'cimg/node:lts'
     steps:
       - checkout
+      - run:
+          name: Install npm dependencies
+          command: |
+            npm install --save
+      - snyk/scan:
+          fail-on-issues: false
+      - run:
+          name: Run Unit Tests
+          command: |
       - run: npm ci
       - snyk/scan
 workflows: null
