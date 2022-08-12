@@ -16,6 +16,4 @@ jobs:
       - run:
           name: Run Unit Tests
           command: |
-      - run: npm ci
-      - snyk/scan
 workflows: null
